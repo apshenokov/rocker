@@ -9,3 +9,8 @@ This build has been tested in Eclipse and in Intellij Community addition.
 
 By running `gradle publishToMavenLocal` you can make the plugin available
 locally for testing.
+
+## Gradle commands
+./gradlew publishToMavenLocal
+./gradlew clean build publish
+./gradlew publish

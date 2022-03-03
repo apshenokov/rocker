@@ -4,7 +4,7 @@
     <groupId>com.fizzed</groupId>
     <artifactId>rocker</artifactId>
     <packaging>pom</packaging>
-    <version>1.3.1-SNAPSHOT</version>
+    <version>1.3.2</version>
 
     <parent>
         <groupId>com.fizzed</groupId>
@@ -22,7 +22,7 @@
         <main.java.package />
         <slf4j.version>1.7.7</slf4j.version>
         <antlr.version>4.5.3</antlr.version>
-        <java.version>1.6</java.version>
+        <java.version>1.8</java.version>
         <license.skip>true</license.skip>
         <!-- netbeans specific -->
         <netbeans.compile.on.save>false</netbeans.compile.on.save>
@@ -85,6 +85,25 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>https://nexus.intergamma.nl/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -197,5 +216,15 @@
 
         </dependencies>
     </dependencyManagement>
-    
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-repo</id>
+            <url>https://nexus.intergamma.nl/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-repo</id>
+            <url>https://nexus.intergamma.nl/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
